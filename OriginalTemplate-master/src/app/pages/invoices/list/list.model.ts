@@ -1,8 +1,9 @@
-export interface InvoiceList {
-    name: string;
+export interface SimpleOffre {
     image ?: string;
     title: string;
-    id: string;
+    typeContrat: string;
     date: string;
-    amount: string;
+    id: number;
+    isFavorite:Boolean
+
 }

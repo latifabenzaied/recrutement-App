@@ -1,0 +1,60 @@
+/* Styles for the table body */
+tbody {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Styles for the user's full name */
+  td h5 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 0;
+  
+    a {
+      color: #333;
+      text-decoration: none;
+  
+      &:hover {
+        color: #007bff;
+      }
+    }
+  }
+  
+  /* Styles for the user's email */
+  td:nth-child(3) {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* Styles for the offer title */
+  td:nth-child(4) {
+    font-size: 14px;
+    color: #007bff;
+  }
+  
+  /* Styles for the application date */
+  td:nth-child(5) {
+    font-size: 14px;
+    color: #999;
+  }
+  
+  /* Styles for the avatar */
+  .avatar-xs .avatar-title {
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  /* Styles for the download icon */
+  ul.contact-links li a {
+    color: #666;
+  
+    &:hover {
+      color: #007bff;
+    }
+  
+    i {
+      font-size: 20px;
+    }
+  }
+  

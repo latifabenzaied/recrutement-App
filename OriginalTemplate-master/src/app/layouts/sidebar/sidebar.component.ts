@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { MENU } from './menu';
 import { MenuItem } from './menu.model';
 import { TranslateService } from '@ngx-translate/core';
+import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -28,7 +29,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
 
   @ViewChild('sideMenu') sideMenu: ElementRef;
 
-  constructor(private eventService: EventService, private router: Router, public translate: TranslateService, private http: HttpClient) {
+  constructor(  private tokenservice: TokenService ,private eventService: EventService, private router: Router, public translate: TranslateService, private http: HttpClient) {
     router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
         this._activateMenuDropdown();
@@ -139,7 +140,18 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
    * Initialize
    */
   initialize(): void {
-    this.menuItems = MENU;
+
+    // this.menuItems = MENU;
+    const decodedToken = this.tokenservice.getDecodedToken();
+    if (decodedToken && decodedToken.authorities) {
+      if (decodedToken.authorities.includes('ADMIN')) {
+        // Afficher uniquement les éléments pour les administrateurs
+        this.menuItems = MENU.filter(item => item.id === 48);  // Affiche uniquement le menu Contacts
+      } else {
+        // Afficher uniquement les éléments pour les utilisateurs
+        this.menuItems = MENU.filter(item => item.id === 36);  // Affiche uniquement le menu Invoices
+      }
+    }
   }
 
   /**

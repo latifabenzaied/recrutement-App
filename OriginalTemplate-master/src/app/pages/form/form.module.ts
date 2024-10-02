@@ -9,7 +9,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { UiSwitchModule } from 'ngx-ui-switch';
 import { ColorPickerModule } from 'ngx-color-picker';
-import { DropzoneModule } from 'ngx-dropzone-wrapper';
+import { DropzoneConfigInterface, DropzoneModule } from 'ngx-dropzone-wrapper';
 
 import { UIModule } from '../../shared/ui/ui.module';
 import { FormRoutingModule } from './form-routing.module';
@@ -23,6 +23,12 @@ import { AdvancedformComponent } from './advancedform/advancedform.component';
 import { RepeaterComponent } from './repeater/repeater.component';
 import { LayoutsComponent } from './layouts/layouts.component';
 
+const DROPZONECONFIG: DropzoneConfigInterface= {
+  // URL to send the files
+  url: 'http://localhost:8080/condidature/Add',
+  maxFilesize: 50,
+  acceptedFiles: 'image/*',
+};
 @NgModule({
   // tslint:disable-next-line: max-line-length
   declarations: [ElementsComponent, ValidationComponent, EditorComponent, UploadsComponent, WizardComponent, MaskComponent, AdvancedformComponent, RepeaterComponent, LayoutsComponent],

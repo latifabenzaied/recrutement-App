@@ -47,6 +47,17 @@
                     <div *ngIf="f.username.errors.required">Userame is required</div>
                   </div>
                 </div>
+                <div class="mb-3">
+                  <label for="username" class="form-label">lastname</label>
+
+                  <input type="text" formControlName="lastname" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" id="lastname"
+                    placeholder="Enter username" />
+
+                  <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                    <div *ngIf="f.lastname.errors.required">Userame is required</div>
+                  </div>
+                </div>
 
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>

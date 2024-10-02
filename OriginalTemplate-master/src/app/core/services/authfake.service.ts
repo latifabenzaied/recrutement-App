@@ -15,22 +15,22 @@ export class AuthfakeauthenticationService {
         this.currentUser = this.currentUserSubject.asObservable();
     }
 
-    public get currentUserValue(): User {
-        return this.currentUserSubject.value;
-    }
+    // public get currentUserValue(): User {
+    //     return this.currentUserSubject.value;
+    // }
 
-    login(email: string, password: string) {
-        return this.http.post<any>(`/users/authenticate`, { email, password })
-            .pipe(map(user => {
-                // login successful if there's a jwt token in the response
-                if (user && user.token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    this.currentUserSubject.next(user);
-                }
-                return user;
-            }));
-    }
+    // login(email: string, password: string) {
+    //     return this.http.post<any>(`/users/authenticate`, { email, password })
+    //         .pipe(map(user => {
+    //             // login successful if there's a jwt token in the response
+    //             if (user && user.token) {
+    //                 // store user details and jwt token in local storage to keep user logged in between page refreshes
+    //                 localStorage.setItem('currentUser', JSON.stringify(user));
+    //                 this.currentUserSubject.next(user);
+    //             }
+    //             return user;
+    //         }));
+    // }
 
     logout() {
         // remove user from local storage to log user out

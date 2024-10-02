@@ -59,7 +59,7 @@
     },
     "LOGIN": {
       "PROFILE": "Profile",
-      "MY_WALLET": "My Wallet",
+      "MY_WALLET": "Favorite Deals",
       "SETTINGS": "Settings",
       "LOCK_SCREEN": "Lock screen",
       "LOGOUT": "Logout"
@@ -150,9 +150,9 @@
       }
     },
     "INVOICES": {
-      "TEXT": "Invoices",
+      "TEXT": "Our Offers",
       "LIST": {
-        "INVOICELIST": "Invoice List",
+        "INVOICELIST": "Offers List",
         "INVOICEDETAIL": "Invoice Detail"
       }
     },
@@ -174,10 +174,10 @@
       }
     },
     "CONTACTS": {
-      "TEXT": "Contacts",
+      "TEXT": "Offers Administration",
       "LIST": {
-        "USERGRID": "User Grid",
-        "USERLIST": "User List",
+        "USERGRID": "Offres List",
+        "USERLIST": "Offres List",
         "PROFILE": "Profile"
       }
     },

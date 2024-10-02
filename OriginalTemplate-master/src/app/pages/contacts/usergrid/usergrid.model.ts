@@ -1,8 +1,8 @@
 export interface Usergrid {
-    id: number;
-    image?: string;
-    name: string;
-    designation: string;
-    projects: string[];
-    email: string;
+    title: string;
+    typeContrat: string;
+    // name: string;
+    // designation ?: string;
+    // projects: string[];
+    // email: string;
 }

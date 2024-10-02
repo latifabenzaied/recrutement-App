@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormArray, UntypedFormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-repeater',
@@ -15,10 +15,10 @@ export class RepeaterComponent implements OnInit {
   // bread crumb items
   breadCrumbItems: Array<{}>;
 
-  form: FormGroup;
-  phoneData: FormGroup;
+  form: UntypedFormGroup;
+  phoneData: UntypedFormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({
       formlist: this.fb.array([]),
     }),
@@ -32,21 +32,21 @@ export class RepeaterComponent implements OnInit {
     this.breadCrumbItems = [{ label: 'Forms' }, { label: 'Form Repeater', active: true }];
   }
 
-  formData(): FormArray {
-    return this.form.get('formlist') as FormArray;
+  formData(): UntypedFormArray {
+    return this.form.get('formlist') as UntypedFormArray;
   }
 
-  phonedata(): FormArray {
-    return this.phoneData.get('phoneValue') as FormArray;
+  phonedata(): UntypedFormArray {
+    return this.phoneData.get('phoneValue') as UntypedFormArray;
   }
 
-  phone(): FormGroup {
+  phone(): UntypedFormGroup {
     return this.fb.group({
       phonenumber: ''
     });
   }
 
-  field(): FormGroup {
+  field(): UntypedFormGroup {
     return this.fb.group({
       name: '',
       email: '',

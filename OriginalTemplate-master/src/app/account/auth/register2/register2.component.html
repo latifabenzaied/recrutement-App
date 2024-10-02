@@ -103,6 +103,15 @@
                                             <div *ngIf="f.username.errors.required">Userame is required</div>
                                         </div>
                                     </div>
+                                    <div class="mb-3">
+                                        <label for="username">lastname</label>
+                                        <input type="text" formControlName="lastname" class="form-control" id="lastname"
+                                            [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }"
+                                            placeholder="Enter last name">
+                                        <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                                            <div *ngIf="f.lastname.errors.required">Userame is required</div>
+                                        </div>
+                                    </div>
 
                                     <div class="mb-3">
                                         <label for="useremail">Email</label>

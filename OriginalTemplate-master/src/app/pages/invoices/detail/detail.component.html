@@ -5,57 +5,61 @@
   <app-page-title title="Detail" [breadcrumbItems]="breadCrumbItems"></app-page-title>
 
   <!-- end page title -->
-
+  <ngb-alert  *ngIf="showAlert" type="success" (close)="close()" class="custom-alert">
+    {{ alertMessage }}
+  </ngb-alert>
   <div class="row">
     <div class="col-lg-12">
       <div class="card">
         <div class="card-body">
           <div class="invoice-title">
-            <h4 class="float-end font-size-16">Order # 12345</h4>
-            <div class="mb-4">
-              <img src="assets/images/logo-dark.png" alt="logo" height="20" />
+            <h4 class="float-end font-size-22 mt-4">{{offre.title}}</h4>
+            <div class="mb-1">
+              <img src="assets/images/1630576094349.jpg" alt="logo" height="50" />
+              <div class="row mt-3">
+                <div class="col-6">
+                  <address class="mb-0">
+                    <i class="fas fa-map-marked-alt"></i>  Rue 8368, Montplaisir- 1073 Tunis TUNISIE<br>
+                  </address>
+                </div>
+              </div>
             </div>
           </div>
           <hr>
+          
           <div class="row">
-            <div class="col-6">
+            <div class="col-11 mt-3">
               <address>
-                <strong>Billed To:</strong><br>
-                John Smith<br>
-                1234 Main<br>
-                Apt. 4B<br>
-                Springfield, ST 54321
-              </address>
-            </div>
-            <div class="col-6 text-sm-end">
-              <address>
-                <strong>Shipped To:</strong><br>
-                Kenny Rigdon<br>
-                1234 Main<br>
-                Apt. 4B<br>
-                Springfield, ST 54321
+                <strong class="font-size-18">Description :</strong><br><br>
+         {{offre.description}}
               </address>
             </div>
           </div>
+
+
           <div class="row">
-            <div class="col-6 mt-3">
+            <div class="col-11 mt-3">
               <address>
-                <strong>Payment Method:</strong><br>
-                Visa ending **** 4242<br>
-                jsmith@email.com
-              </address>
-            </div>
-            <div class="col-6 mt-3 text-sm-end">
-              <address>
-                <strong>Order Date:</strong><br>
-                October 16, 2019<br><br>
+                <strong class="font-size-18">Responsabilities</strong><br>
+                 {{offre.responsabilites}}            <br>
+                
               </address>
             </div>
           </div>
-          <div class="py-2 mt-3">
-            <h3 class="font-size-15 fw-bold">Order summary</h3>
+
+
+          <div class="row">
+            <div class="col-11 mt-3">
+              <address>
+                <strong class="font-size-18">Profil</strong><br>
+                {{offre.profil}}<br>
+                
+              </address>
+            </div>
           </div>
-          <div class="table-responsive">
+
+
+          <!-- <div class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
@@ -100,11 +104,48 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-          <div class="d-print-none">
+          </div> -->
+          <ng-template #content role="document" let-modal>
+            <div class="modal-header">
+              <h5 class="modal-title mt-0">Add Application</h5>
+              <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="candidatureForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+                <div class="row">
+                  <div class="col-12">
+                    <div>
+                    
+                      <div class="input-group">
+                          <input type="file" (change)="onFileChange($event)" formControlName="cv" class="form-control" id="inputGroupFile02">
+                          <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                      </div>
+                  </div>
+
+                  <div *ngIf="cv.invalid && (cv.dirty || cv.touched)" class="text-danger">
+                    <div *ngIf="cv.errors?.['required']">
+                      File is required.
+                    </div>
+                  </div>
+                  </div>
+                </div>
+                <div class="mt-2"> <!-- Utilisation de la classe Bootstrap mt-2 pour une marge supérieure -->
+                  <button type="submit" class="btn btn-info" id="btn-save-event" [disabled]="candidatureForm.invalid">
+                    Apply Now
+                  </button>
+                </div>
+              </form>
+            </div>
+          </ng-template>
+          <div class="d-print-none" >
             <div class="float-end">
-              <a href="javascript:window.print()" class="btn btn-success"><i class="fa fa-print"></i></a>
-              <a href="javascript: void(0);" class="btn btn-primary w-md ms-1">Send</a>
+              <!-- <a href="javascript: void(0);" class="btn btn-primary w-md ms-1" (click)="openModal(content)">Postuler</a> -->
+              <ng-container *ngIf="isUserAdmin(); else userTemplate">
+                <a href="javascript: void(0);" class="btn btn-primary w-md ms-1" [routerLink]="['/contacts/list',offre.id]">Show Applications</a>
+              </ng-container>
+              <ng-template #userTemplate>
+                <a href="javascript: void(0);" class="btn btn-primary w-md ms-1" (click)="openModal(content)">Postuler</a>
+              </ng-template>
             </div>
           </div>
         </div>

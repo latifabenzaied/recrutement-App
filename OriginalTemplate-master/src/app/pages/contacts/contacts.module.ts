@@ -9,13 +9,19 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { WidgetModule } from '../../shared/widget/widget.module';
 import { UIModule } from '../../shared/ui/ui.module';
 import { ContactsRoutingModule } from './contacts-routing.module';
-
+import {
+  NgbAlertModule, NgbCarouselModule, NgbDropdownModule, NgbModalModule, NgbProgressbarModule
+  , NgbPopoverModule, NgbPaginationModule, NgbNavModule, NgbAccordionModule,
+  NgbCollapseModule
+} from '@ng-bootstrap/ng-bootstrap';
 import { UsergridComponent } from './usergrid/usergrid.component';
-import { UserlistComponent } from './userlist/userlist.component';
 import { ProfileComponent } from './profile/profile.component';
+import { TablesModule } from '../tables/tables.module';
+import { UserlistComponent } from './userlist/userlist.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
-  declarations: [UsergridComponent, UserlistComponent, ProfileComponent],
+  declarations: [UsergridComponent,UserlistComponent, ProfileComponent],
   imports: [
     CommonModule,
     ContactsRoutingModule,
@@ -24,7 +30,10 @@ import { ProfileComponent } from './profile/profile.component';
     NgSelectModule,
     NgApexchartsModule,
     FormsModule, ReactiveFormsModule ,
-    NgbTooltipModule
+    TablesModule,
+    NgbTooltipModule,
+    CKEditorModule,
+    NgbAlertModule,
   ]
 })
 export class ContactsModule { }

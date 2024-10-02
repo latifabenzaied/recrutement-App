@@ -1,0 +1,26 @@
+// francais ////
+introduction :
+Découvrez l'histoire fascinante des crimes célèbres du monde dans notre musée virtuel. Explorez des expositions interactives qui vous plongent dans les mystères et les intrigues derrière ces affaires qui ont captivé le monde entier
+
+objectif:
+- sensenbiliser
+-éduquer
+//klem ili bech yepresenti
+=> Sensibiliser et éduquer le public sur les complexités entourant les meurtres en série, en favorisant l'empathie, la compréhension et un discours éclairé au sein des communautés.
+
+ODD:
+bien-etre :
+Dans notre musée virtuel nous mettons en lumière l'importance de l'Objectif de Développement Durable numéro 3 : "Bonne santé et bien-être". Cet objectif souligne la nécessité de promouvoir le bien-être physique, mental et social pour tous, ce qui est essentiel pour la construction de sociétés sûres et équitables.
+Plus spécifiquement, nous abordons la question de la santé mentale. Les maladies psychiques sont des défis sérieux et souvent sous-estimés qui peuvent avoir un impact profond sur la vie des individus.
+
+Justice :
+Cet objectif nous rappelle l'importance de garantir à tous un accès équitable à la justice et de renforcer les institutions qui assurent le respect des lois.
+
+En explorant les affaires criminelles notoires, nous mettons en lumière les défis rencontrés par les systèmes judiciaires dans le monde. Il est essentiel de promouvoir des systèmes juridiques transparents et équitables, accessibles à tous, indépendamment de leur origine ou de leur situation.
+
+conclusion :
+ notre musée virtuel "nom du musee" nous rappelle l'importance de comprendre les enjeux liés à la santé mentale,  à la justice. En explorant ces thèmes, nous encourageons une réflexion sur les défis sociétaux et sur la manière dont nous pouvons contribuer à des sociétés plus équilibrées et respectueuses.
+
+
+
+

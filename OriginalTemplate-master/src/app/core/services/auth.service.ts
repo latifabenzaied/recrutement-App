@@ -25,12 +25,12 @@ export class AuthenticationService {
      * @param email email of user
      * @param password password of user
      */
-    login(email: string, password: string) {
-        return getFirebaseBackend().loginUser(email, password).then((response: any) => {
-            const user = response;
-            return user;
-        });
-    }
+    // login(email: string, password: string) {
+    //     return getFirebaseBackend().loginUser(email, password).then((response: any) => {
+    //         const user = response;
+    //         return user;
+    //     });
+    // }
 
     /**
      * Performs the register

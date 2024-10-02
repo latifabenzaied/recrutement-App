@@ -1,0 +1,1185 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "OpenApi specification - Alibou",
+        "description": "OpenApi documentation for Spring Security",
+        "termsOfService": "Terms of service",
+        "contact": {
+            "name": "Alibou",
+            "url": "https://aliboucoding.com/course",
+            "email": "contact@aliboucoding.com"
+        },
+        "license": {
+            "name": "Licence name",
+            "url": "https://some-url.com"
+        },
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8088",
+            "description": "Local ENV"
+        }
+    ],
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ],
+    "paths": {
+        "/notificationss/notifications/markAsRead": {
+            "put": {
+                "tags": [
+                    "notification-controller"
+                ],
+                "operationId": "markNotificationsAsRead",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/offre/update/{id}": {
+            "post": {
+                "tags": [
+                    "offre-controller"
+                ],
+                "operationId": "updateOffre",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OffreRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OffreResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/offre/addFavorite": {
+            "post": {
+                "tags": [
+                    "offre-controller"
+                ],
+                "operationId": "addFavorite",
+                "parameters": [
+                    {
+                        "name": "offerId",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/offre/AddOffre": {
+            "post": {
+                "tags": [
+                    "offre-controller"
+                ],
+                "operationId": "saveBook",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OffreRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/notificationss/markAllAsRead": {
+            "post": {
+                "tags": [
+                    "notification-controller"
+                ],
+                "operationId": "markAllNotificationsAsRead",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/condidature/Add": {
+            "post": {
+                "tags": [
+                    "condidature-controller"
+                ],
+                "operationId": "createCondidature",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "offreId",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "cv"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "cv": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Condidature"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/sendEmail": {
+            "post": {
+                "tags": [
+                    "authentication-controller"
+                ],
+                "operationId": "sendEmail",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/register": {
+            "post": {
+                "tags": [
+                    "authentication-controller"
+                ],
+                "operationId": "register",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegistrationRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/authenticate": {
+            "post": {
+                "tags": [
+                    "authentication-controller"
+                ],
+                "operationId": "authenticate",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AuthenticationRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AuthenticationResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/offre/archived/{offer-id}": {
+            "patch": {
+                "tags": [
+                    "offre-controller"
+                ],
+                "operationId": "updateArchivedStatus",
+                "parameters": [
+                    {
+                        "name": "offer-id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/condidature/editstatus": {
+            "patch": {
+                "tags": [
+                    "condidature-controller"
+                ],
+                "operationId": "updateCondidatureStatus",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "SOUMIS",
+                                "EN_REVISION",
+                                "ENTRETIEN_PROGRAMME",
+                                "ENTRETIEN_REALISE",
+                                "ACCEPTE",
+                                "REFUSE",
+                                "ARCHIVES"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "customMessage",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Condidature"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{email}": {
+            "get": {
+                "tags": [
+                    "user-controler"
+                ],
+                "operationId": "getUserById",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/favorite-offers/{email}": {
+            "get": {
+                "tags": [
+                    "user-controler"
+                ],
+                "operationId": "getUserFavoriteOffers",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "uniqueItems": true,
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OffreResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/offre/{id}": {
+            "get": {
+                "tags": [
+                    "offre-controller"
+                ],
+                "operationId": "getOffreById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OffreResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/offre/test": {
+            "get": {
+                "tags": [
+                    "offre-controller"
+                ],
+                "operationId": "test",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/offre/non-archived": {
+            "get": {
+                "tags": [
+                    "offre-controller"
+                ],
+                "operationId": "getNonArchivedOffres",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OffreResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/offre/all": {
+            "get": {
+                "tags": [
+                    "offre-controller"
+                ],
+                "operationId": "getAllOffres",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OffreResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/notificationss/unread": {
+            "get": {
+                "tags": [
+                    "notification-controller"
+                ],
+                "operationId": "getUnreadNotifications",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Notification"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/condidature/getByOffre/{offreId}": {
+            "get": {
+                "tags": [
+                    "condidature-controller"
+                ],
+                "operationId": "getCandidaturesByOffre",
+                "parameters": [
+                    {
+                        "name": "offreId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CondidatureResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/condidature/get/{email}": {
+            "get": {
+                "tags": [
+                    "condidature-controller"
+                ],
+                "operationId": "getCandidaturesByUser",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CondidatureResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/condidature/download-cv/{fileName}": {
+            "get": {
+                "tags": [
+                    "condidature-controller"
+                ],
+                "operationId": "downloadCv",
+                "parameters": [
+                    {
+                        "name": "fileName",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/activate-account": {
+            "get": {
+                "tags": [
+                    "authentication-controller"
+                ],
+                "operationId": "confirm",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/users/favorites/{email}/{offerId}": {
+            "delete": {
+                "tags": [
+                    "user-controler"
+                ],
+                "operationId": "removeFavoriteOffer",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "offerId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/offre/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "offre-controller"
+                ],
+                "operationId": "deleteOffre",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "OffreRequest": {
+                "required": [
+                    "description",
+                    "expirationDate",
+                    "profil",
+                    "responsabilites",
+                    "title"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "responsabilites": {
+                        "type": "string"
+                    },
+                    "profil": {
+                        "type": "string"
+                    },
+                    "expirationDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "shareable": {
+                        "type": "boolean"
+                    },
+                    "typeContrat": {
+                        "type": "string",
+                        "enum": [
+                            "Cdi",
+                            "Stage",
+                            "cdd"
+                        ]
+                    },
+                    "publisher": {
+                        "type": "string"
+                    }
+                }
+            },
+            "OffreResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "responsabilites": {
+                        "type": "string"
+                    },
+                    "profil": {
+                        "type": "string"
+                    },
+                    "datePublication": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "dateExpiration": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "typeContrat": {
+                        "type": "string",
+                        "enum": [
+                            "Cdi",
+                            "Stage",
+                            "cdd"
+                        ]
+                    },
+                    "archived": {
+                        "type": "boolean"
+                    },
+                    "shareable": {
+                        "type": "boolean"
+                    },
+                    "publisher": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Condidature": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "etat": {
+                        "type": "string",
+                        "enum": [
+                            "SOUMIS",
+                            "EN_REVISION",
+                            "ENTRETIEN_PROGRAMME",
+                            "ENTRETIEN_REALISE",
+                            "ACCEPTE",
+                            "REFUSE",
+                            "ARCHIVES"
+                        ]
+                    },
+                    "appliedDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "offre": {
+                        "$ref": "#/components/schemas/Offre"
+                    },
+                    "cvPath": {
+                        "type": "string"
+                    }
+                }
+            },
+            "GrantedAuthority": {
+                "type": "object",
+                "properties": {
+                    "authority": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Offre": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "responsabilites": {
+                        "type": "string"
+                    },
+                    "profil": {
+                        "type": "string"
+                    },
+                    "datePublication": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "dateExpiration": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "lieu": {
+                        "type": "string"
+                    },
+                    "typeContrat": {
+                        "type": "string",
+                        "enum": [
+                            "Cdi",
+                            "Stage",
+                            "cdd"
+                        ]
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "lastModification": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "archived": {
+                        "type": "boolean"
+                    },
+                    "shareable": {
+                        "type": "boolean"
+                    },
+                    "publisher": {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "applications": {
+                        "uniqueItems": true,
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Condidature"
+                        }
+                    }
+                }
+            },
+            "Role": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "createdDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "lastModifiedDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "User": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "firstname": {
+                        "type": "string"
+                    },
+                    "lastname": {
+                        "type": "string"
+                    },
+                    "dateOfBirth": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "accountLocked": {
+                        "type": "boolean"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "lastModifiedDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "createdDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Role"
+                        }
+                    },
+                    "favoriteOffers": {
+                        "uniqueItems": true,
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Offre"
+                        }
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "fullName": {
+                        "type": "string"
+                    },
+                    "username": {
+                        "type": "string"
+                    },
+                    "accountNonExpired": {
+                        "type": "boolean"
+                    },
+                    "credentialsNonExpired": {
+                        "type": "boolean"
+                    },
+                    "authorities": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/GrantedAuthority"
+                        }
+                    },
+                    "accountNonLocked": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "RegistrationRequest": {
+                "required": [
+                    "email",
+                    "firstname",
+                    "lastname",
+                    "password"
+                ],
+                "type": "object",
+                "properties": {
+                    "firstname": {
+                        "type": "string"
+                    },
+                    "lastname": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "AuthenticationRequest": {
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "AuthenticationResponse": {
+                "type": "object",
+                "properties": {
+                    "token": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Notification": {
+                "type": "object",
+                "properties": {
+                    "idNotification": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "userId": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "readd": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "CondidatureResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "titleoffre": {
+                        "type": "string"
+                    },
+                    "userFirstName": {
+                        "type": "string"
+                    },
+                    "userLastName": {
+                        "type": "string"
+                    },
+                    "userEmail": {
+                        "type": "string"
+                    },
+                    "appliedDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "etat": {
+                        "type": "string",
+                        "enum": [
+                            "SOUMIS",
+                            "EN_REVISION",
+                            "ENTRETIEN_PROGRAMME",
+                            "ENTRETIEN_REALISE",
+                            "ACCEPTE",
+                            "REFUSE",
+                            "ARCHIVES"
+                        ]
+                    },
+                    "cvPath": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "JWT auth description",
+                "in": "header",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}

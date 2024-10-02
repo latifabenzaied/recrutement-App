@@ -1,56 +1,79 @@
 <div class="container-fluid">
 
   <!-- start page title -->
-  <app-page-title title="Users Grid" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <app-page-title title="Offres list" [breadcrumbItems]="breadCrumbItems"></app-page-title>
   <!-- end page title -->
-
+  <ngb-alert  *ngIf="showAlert" type="success" (close)="close()" class="custom-alert">
+    {{ alertMessage }}
+  </ngb-alert>
   <div class="row">
     <div class="d-flex">
-      <button class="btn btn-success ms-auto mb-2" (click)="openModal(content)">Add user </button>
+      <button class="btn btn-success ms-auto mb-2" (click)="openModal(content)">Add Offre </button>
     </div>
-    <ng-template #content role="document" let-modal>
+    <ng-template #content let-modal>
       <div class="modal-header">
-        <h5 class="modal-title mt-0">Add Customer</h5>
+        <h5 class="modal-title mt-0">{{ isUpdateMode ? 'Update Offer' : 'Add Offer' }}</h5>
         <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
       </div>
       <div class="modal-body">
-        <form (ngSubmit)="saveUser()" [formGroup]="userForm">
+        <form (ngSubmit)="saveOffre()" [formGroup]="offreForm">
           <div class="row">
             <div class="col-12">
               <div class="mb-3">
-                <label class="control-label">Username</label>
-                <input class="form-control" placeholder="Enter Username" type="text" name="name"
-                  formControlName="name" [ngClass]="{'is-invalid': submitted && form.name.errors}" />
-                <div *ngIf="submitted && form.name.errors" class="invalid-feedback">
-                  <span *ngIf="form.name.errors.required">Username is required.</span>
+                <label class="control-label">Title</label>
+                <input class="form-control" placeholder="Enter Title" type="text" name="title"
+                  formControlName="title" [ngClass]="{'is-invalid': submitted && form.title.errors}" />
+                <div *ngIf="submitted && form.title.errors" class="invalid-feedback">
+                  <span *ngIf="form.title.errors.required">Title is required.</span>
                 </div>
               </div>
-
+    
               <div class="mb-3">
-                <label class="control-label">Designation</label>
-                <input class="form-control" placeholder="Enter designation" type="text" name="designation"
-                  formControlName="designation" [ngClass]="{'is-invalid': submitted && form.designation.errors}" />
-                <div *ngIf="submitted && form.designation.errors" class="invalid-feedback">
-                  <span *ngIf="form.designation.errors.required">Username is required.</span>
-                </div>
-              </div>
-              <div class="mb-3">
-                <label class="control-label">Email</label>
-                <input class="form-control" placeholder="Enter email" type="text" name="email" formControlName="email"
-                  [ngClass]="{'is-invalid': submitted && form.email.errors}" />
-                <div *ngIf="submitted && form.email.errors" class="invalid-feedback">
-                  <span *ngIf="form.email.errors.required">Email is required.</span>
-                  <span *ngIf="form.email.errors.pattern">This value should be a valid email.</span>
+                <label class="control-label">Description</label>
+                <textarea class="form-control" placeholder="Enter Description" name="description"
+                formControlName="description" [ngClass]="{'is-invalid': submitted && form.description.errors}"
+                rows="5"></textarea>
+                <div *ngIf="submitted && form.description.errors" class="invalid-feedback">
+                  <span *ngIf="form.description.errors.required">Description is required.</span>
                 </div>
               </div>
               <div class="mb-3">
-                <label class="control-label">Select</label>
-                <ng-select [items]="selectValue" [multiple]="true" name="select" [ngModelOptions]="{standalone: true}" [(ngModel)]="selected"></ng-select>
+                <label class="control-label">Profil</label>
+                <textarea  class="form-control" placeholder="Enter Profil" type="text" name="profil"
+                  formControlName="profil" [ngClass]="{'is-invalid': submitted && form.profil.errors}" rows="5"></textarea>
+                <div *ngIf="submitted && form.profil.errors" class="invalid-feedback">
+                  <span *ngIf="form.profil.errors.required">Profil is required.</span>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="control-label">Responsabilities</label>
+                <input class="form-control" placeholder="Enter Responsabilities" type="text" name="responsabilities"
+                  formControlName="responsabilities" [ngClass]="{'is-invalid': submitted && form.responsabilities.errors}" />
+                <div *ngIf="submitted && form.responsabilities.errors" class="invalid-feedback">
+                  <span *ngIf="form.responsabilities.errors.required">Responsabilities is required.</span>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="control-label">Expiration Date</label>
+                <input class="form-control" type="date" name="expirationDate"
+                  formControlName="expirationDate" [ngClass]="{'is-invalid': submitted && form.expirationDate.errors}" />
+                <div *ngIf="submitted && form.expirationDate.errors" class="invalid-feedback">
+                  <span *ngIf="form.expirationDate.errors.required">Expiration date is required.</span>
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label class="control-label">Shareable</label>
+                <ng-select [items]="selectValue2" [multiple]="false" formControlName="shareable"></ng-select>
+              </div>
+              <div class="mb-3">
+                <label class="control-label">Type de contrat</label>
+                <ng-select [items]="selectValue"  bindValue="value" formControlName="typecontrat"></ng-select>
               </div>
             </div>
           </div>
           <button type="submit" class="btn btn-success" id="btn-save-event">
-            Save
+            {{ isUpdateMode ? 'Update' : 'Save' }}
           </button>
         </form>
       </div>
@@ -58,35 +81,36 @@
 
 
 
+
     <div class="col-xl-3 col-sm-6" *ngFor="let data of userGridData">
       <div class="card text-center">
         <div class="card-body">
-          <div class="avatar-sm mx-auto mb-4" *ngIf="!data.image">
-            <span class="avatar-title rounded-circle bg-soft bg-primary text-primary font-size-16">
-              {{data.name.charAt(0)}}
-            </span>
+         
+          <div  class="mb-4">
+            <img class="rounded-circle avatar-sm" src="assets/images/1630576094349.jpg" alt />
           </div>
-          <div *ngIf="data.image" class="mb-4">
-            <img class="rounded-circle avatar-sm" src="{{data.image}}" alt />
-          </div>
-          <h5 class="font-size-15 mb-1"><a href="javascript: void(0);" class="text-dark">{{data.name}}</a></h5>
-          <p class="text-muted">{{data.designation}}</p>
+          <h5 [routerLink]="['/invoices/detail',data.id]" class="font-size-15 mb-1"><a href="javascript: void(0);" class="text-dark">{{data.title}}</a></h5>
+          <!-- <p class="text-muted">{{data.designation}}</p> -->
           <div>
-            <a href="javascript: void(0);" class="badge bg-primary font-size-11 m-1">{{data.projects[0]}}</a>
-            <a href="javascript: void(0);" class="badge bg-primary font-size-11 m-1">{{data.projects[1]}}</a>
-            <a href="javascript: void(0);" class="badge bg-primary font-size-11 m-1">{{data.projects[2]}}</a>
+            <a href="javascript: void(0);" class="badge bg-primary font-size-11 m-1">{{data.typeContrat}}</a>
+
           </div>
         </div>
         <div class="card-footer bg-transparent border-top">
           <div class="contact-links d-flex font-size-20">
             <div class="flex-fill">
-              <a href="javascript: void(0);" ngbTooltip="Message"><i class="bx bx-message-square-dots"></i></a>
+              <a  ngbTooltip="Update" (click)=" openUpdateModal(content,data.id)">
+                <i class="far fa-edit"></i></a>
             </div>
             <div class="flex-fill">
-              <a href="javascript: void(0);" ngbTooltip="Projects"><i class="bx bx-pie-chart-alt"></i></a>
+              <a href="javascript: void(0);" ngbTooltip="Archive" (click)="archiveItem(data.id)">
+                <i *ngIf="!data.archived" class="fas fa-archive"></i>
+                <i *ngIf="data.archived" class="far fa-trash-alt"></i>
+              </a>
             </div>
             <div class="flex-fill">
-              <a href="javascript: void(0);" ngbTooltip="Profile"><i class="bx bx-user-circle"></i></a>
+              <a href="javascript: void(0);" ngbTooltip="Delete" (click)="deleteOffre(data.id)">
+                <i class="far fa-trash-alt"></i></a>
             </div>
           </div>
         </div>
@@ -105,3 +129,4 @@
   <!-- end row -->
 
 </div> <!-- container-fluid -->
+
