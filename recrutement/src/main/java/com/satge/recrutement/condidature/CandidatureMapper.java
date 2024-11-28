@@ -18,4 +18,5 @@ public class CandidatureMapper {
                 .cvPath(candidature.getCvPath())
                 .build();
     }
+    //testetgsgsgs
 }
