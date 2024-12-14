@@ -1,6 +1,6 @@
 package com.satge.recrutement.security;
 
-import com.satge.recrutement.user.UserRepository;
+import com.satge.recrutement.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
