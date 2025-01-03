@@ -22,19 +22,22 @@ export class DetailComponent implements OnInit {
 
   offre: OffreResponse | undefined;
   isUser: Boolean;
+  isLoading: Boolean;
   candidatureForm: UntypedFormGroup;
   userservice: UserControlerService;
   // bread crumb items
   breadCrumbItems: Array<{}>;
   userEmail = this.tokenservice.getUserId();
   selectedFile: File | null = null;
-  showAlert: boolean;  alertMessage: string;
+  showAlert: boolean;
+  showAlertError: boolean;  alertMessage: string;
   constructor(private modalService: NgbModal, private route: ActivatedRoute,
     private offreService: OffreControllerService,
     private tokenservice: TokenService,
     private router: Router,
     private fb: UntypedFormBuilder,
     private candidatureService: CondidatureControllerService,
+   
   ) { }
 
   ngOnInit() {
@@ -64,27 +67,32 @@ export class DetailComponent implements OnInit {
     if (this.candidatureForm.invalid) {
       return;
     }
+    this.isLoading = true;
 
     const cvFileInput = this.candidatureForm.get('cv')?.value;
     if (cvFileInput && this.selectedFile) {
-
+       console.log(cvFileInput);
       const params: CreateCondidature$Params = {
         email: this.userEmail,
         offreId: this.offre?.id,
         body: this.selectedFile
       };
       this.candidatureService.createCondidature(params).subscribe({
+        
         next: (response) => {
+          
           console.log('Candidature added successfully:', response);
           this.alertMessage = 'Your application has been submitted successfully!';
           this.showAlert = true;  
           this.modalService.dismissAll();
+          this.isLoading = false;
         },
         error: (error) => {
           console.error('Error adding candidature:', error);
           this.modalService.dismissAll();
-          this.alertMessage = 'Your application has been submitted successfully!';
-          this.showAlert = true;  
+          this.alertMessage = 'The CV is not compatible with the job offer.';
+          this.showAlertError = true;  
+          this.isLoading = false;
         }
       });
     }

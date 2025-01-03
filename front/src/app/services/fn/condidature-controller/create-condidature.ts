@@ -11,9 +11,11 @@ import { Condidature } from '../../models/condidature';
 export interface CreateCondidature$Params {
   email: string;
   offreId: number;
-  body?: Blob; // Le fichier est envoyé en tant que Blob
+  body?: Blob;
+
 }
-export function createCondidature(http: HttpClient, rootUrl: string, params: CreateCondidature$Params, context?: HttpContext): Observable<StrictHttpResponse<Condidature>> {
+
+export function createCondidature(http: HttpClient, rootUrl: string, params: CreateCondidature$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
   const formData = new FormData();
   
   // Vérifier si params.body est un File, sinon utiliser Blob
@@ -32,42 +34,16 @@ export function createCondidature(http: HttpClient, rootUrl: string, params: Cre
     'Accept': 'application/json'
   });
 
-  return http.post<StrictHttpResponse<Condidature>>(
+  return http.post<StrictHttpResponse<string>>(
     `${rootUrl}${createCondidature.PATH}`,
     formData,
     { headers: headers, context: context, observe: 'response' }
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Condidature>;
+      return r as StrictHttpResponse<string>;
     })
   );
 }
-
-// export function createCondidature(http: HttpClient, rootUrl: string, params: CreateCondidature$Params, context?: HttpContext): Observable<StrictHttpResponse<Condidature>> {
-//   const formData = new FormData();
-  
-//   // Utiliser le nom original du fichier s'il est disponible
-//   const fileName = params.body ? (params.body as Blob).name : 'file';
-//   formData.append('cv', params.body || new Blob(), fileName); // Ajouter le fichier avec son nom original
-//   formData.append('email', params.email);
-//   formData.append('offreId', params.offreId.toString());
-
-//   const headers = new HttpHeaders({
-//     'Accept': 'application/json'
-//   });
-
-//   return http.post<StrictHttpResponse<Condidature>>(
-//     `${rootUrl}${createCondidature.PATH}`,
-//     formData,
-//     { headers: headers, context: context, observe: 'response' }
-//   ).pipe(
-//     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
-//     map((r: HttpResponse<any>) => {
-//       return r as StrictHttpResponse<Condidature>;
-//     })
-//   );
-// }
-
 
 createCondidature.PATH = '/condidature/Add';

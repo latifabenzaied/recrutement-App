@@ -37,7 +37,7 @@ export class CondidatureControllerService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createCondidature$Response(params: CreateCondidature$Params, context?: HttpContext): Observable<StrictHttpResponse<Condidature>> {
+  createCondidature$Response(params: CreateCondidature$Params, context?: HttpContext): Observable<StrictHttpResponse<String>> {
     return createCondidature(this.http, this.rootUrl, params, context);
   }
 
@@ -47,9 +47,9 @@ export class CondidatureControllerService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createCondidature(params: CreateCondidature$Params, context?: HttpContext): Observable<Condidature> {
+  createCondidature(params: CreateCondidature$Params, context?: HttpContext): Observable<String> {
     return this.createCondidature$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Condidature>): Condidature => r.body)
+      map((r: StrictHttpResponse<any>): String => r.body)
     );
   }
 

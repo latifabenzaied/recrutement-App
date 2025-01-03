@@ -968,6 +968,9 @@
                         "items": {
                             "$ref": "#/components/schemas/Condidature"
                         }
+                    },
+                    "fullDescription": {
+                        "type": "string"
                     }
                 }
             },
@@ -1050,12 +1053,6 @@
                     "username": {
                         "type": "string"
                     },
-                    "accountNonExpired": {
-                        "type": "boolean"
-                    },
-                    "credentialsNonExpired": {
-                        "type": "boolean"
-                    },
                     "authorities": {
                         "type": "array",
                         "items": {
@@ -1063,6 +1060,12 @@
                         }
                     },
                     "accountNonLocked": {
+                        "type": "boolean"
+                    },
+                    "accountNonExpired": {
+                        "type": "boolean"
+                    },
+                    "credentialsNonExpired": {
                         "type": "boolean"
                     }
                 }

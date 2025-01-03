@@ -51,8 +51,8 @@ export class UserlistComponent implements OnInit {
     });
     this.route.paramMap.subscribe(params => {
       this.offreId = +params.get('id');
-      console.log(this.offreId);
       this.getCandidaturesByOffre();
+      console.log("hihih");
     });
     this.breadCrumbItems = [{ label: '' }, { label: '', active: true }];
   }
@@ -65,6 +65,7 @@ export class UserlistComponent implements OnInit {
         if (data instanceof Blob) {
           let jsonString = await data.text();
           this.candidatures = JSON.parse(jsonString);
+          console.log( this.candidatures);
         }
 
 
@@ -74,6 +75,8 @@ export class UserlistComponent implements OnInit {
       }
     );
   }
+
+
   downloadCv(fileName: string): void {
     const fileNamee = this.extractFileName(fileName);
 

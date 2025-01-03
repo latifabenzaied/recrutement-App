@@ -1,0 +1,38 @@
+/* Style de l'overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);  /* Fond semi-transparent */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;  /* Pour être au-dessus de tous les autres éléments */
+  }
+  
+  /* Spinner */
+  .spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);  /* Couleur du fond du spinner */
+    border-top: 4px solid #fff;  /* Couleur de la partie visible du spinner */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;  /* Animation du spinner */
+  }
+  
+  /* Animation du spinner */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Texte du chargement */
+  .loading-text {
+    color: white;
+    font-size: 18px;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  

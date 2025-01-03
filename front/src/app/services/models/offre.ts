@@ -8,6 +8,7 @@ export interface Offre {
   dateExpiration?: string;
   datePublication?: string;
   description?: string;
+  fullDescription?: string;
   id?: number;
   lastModification?: string;
   lieu?: string;

@@ -1,11 +1,17 @@
+
+<div *ngIf="isLoading" class="overlay">
+  <div class="spinner"></div>
+  <div class="loading-text">Analyzing your CV, please wait...</div>
+</div>
+
 <div class="container-fluid">
-
-  <!-- start page title -->
-
   <app-page-title title="Detail" [breadcrumbItems]="breadCrumbItems"></app-page-title>
 
   <!-- end page title -->
   <ngb-alert  *ngIf="showAlert" type="success" (close)="close()" class="custom-alert">
+    {{ alertMessage }}
+  </ngb-alert>
+  <ngb-alert  *ngIf="showAlertError" type="danger" (close)="close()" class="custom-alert">
     {{ alertMessage }}
   </ngb-alert>
   <div class="row">
@@ -143,6 +149,7 @@
               <ng-container *ngIf="isUserAdmin(); else userTemplate">
                 <a href="javascript: void(0);" class="btn btn-primary w-md ms-1" [routerLink]="['/contacts/list',offre.id]">Show Applications</a>
               </ng-container>
+             
               <ng-template #userTemplate>
                 <a href="javascript: void(0);" class="btn btn-primary w-md ms-1" (click)="openModal(content)">Postuler</a>
               </ng-template>

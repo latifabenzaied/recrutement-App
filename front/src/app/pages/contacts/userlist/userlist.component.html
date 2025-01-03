@@ -4,6 +4,7 @@
   <!-- <ngb-alert *ngIf="showAlert" [dismissible]="false" type="success">
     {{ alertMessage }}
   </ngb-alert> -->
+  <div>{{candidatures.length}}</div>
   <ngb-alert  *ngIf="showAlert" type="success" (close)="close()" class="custom-alert">
     {{ alertMessage }}
   </ngb-alert>
@@ -65,6 +66,8 @@
       </div>
     </div>
   </div>
+
+
   <ng-template #noFavorites>
     <div class="row">
       <div class="col-12 text-center">
